@@ -5,6 +5,8 @@ import (
 	"log"
 	"os"
 	"testing"
+
+	_ "github.com/lib/pq"
 )
 
 const (
@@ -14,7 +16,6 @@ const (
 
 var testQueries *Queries
 
-
 func TestMain(m *testing.M) {
 	conn, err := sql.Open(dbDriver, dbSource)
 	if err != nil {
@@ -22,7 +23,7 @@ func TestMain(m *testing.M) {
 	}
 
 	testQueries = New(conn)
-	
+
 	os.Exit(m.Run())
 
 }
